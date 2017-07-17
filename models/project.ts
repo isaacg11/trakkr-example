@@ -4,7 +4,6 @@ import Issue from './issue';
 let Schema = mongoose.Schema;
 
 let ProjectSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   name: {
     type:String,
     required: true

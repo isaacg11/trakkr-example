@@ -4,7 +4,7 @@ var trakkr;
     (function (Services) {
         var ProjectService = (function () {
             function ProjectService($resource) {
-                this.ProjectResource = $resource('/api/project/:id');
+                this.ProjectResource = $resource('/api/projects/:id');
             }
             ProjectService.prototype.get = function (id) {
                 return this.ProjectResource.get({ id: id });
@@ -50,7 +50,7 @@ var trakkr;
         angular.module('trakkr').service('UserService', UserService);
         var IssueService = (function () {
             function IssueService($resource) {
-                this.IssueResource = $resource('/api/issue/:id');
+                this.IssueResource = $resource('/api/issues/:id');
             }
             IssueService.prototype.get = function (id) {
                 return this.IssueResource.get({ id: id });

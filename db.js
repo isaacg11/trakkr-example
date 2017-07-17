@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb = require("mongodb");
 var connectionString = "mongodb://trakkr:pw4trakkr@ds129422.mlab.com:29422/trakkr";
 var Database = (function () {
@@ -14,5 +15,4 @@ var Database = (function () {
     };
     return Database;
 }());
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Database;

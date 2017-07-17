@@ -27,9 +27,7 @@ var trakkr;
                 this.projects = ProjectService.list();
             }
             ProjectController.prototype.saveProject = function () {
-                var _this = this;
                 this.ProjectService.save(this.project).then(function () {
-                    _this.projects = _this.ProjectService.list();
                 });
             };
             ProjectController.prototype.remove = function (id) {
@@ -46,12 +44,11 @@ var trakkr;
                 this.$stateParams = $stateParams;
                 this.ProjectService = ProjectService;
                 this.IssueService = IssueService;
-                var id = $stateParams['id'];
-                this.project = ProjectService.get(id);
+                this.id = $stateParams['id'];
             }
             SingleProjectController.prototype.addIssue = function (issue) {
                 var _this = this;
-                issue.project_id = this.project._id;
+                issue.project_id = this.id;
                 this.IssueService.save(issue).then(function (project) {
                     _this.project = project;
                 });

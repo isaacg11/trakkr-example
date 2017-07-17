@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var db_1 = require("../db");
 "";
@@ -47,5 +48,4 @@ router.delete('/:id', function (req, res) {
         res.sendStatus(200);
     });
 });
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = router;

@@ -1,42 +1,56 @@
 import * as express from 'express';
-import database from '../db';
-import * as mongodb from 'mongodb';
+// import database from '../db';
+// import * as mongodb from 'mongodb';
+import * as mongoose from 'mongoose';
 import Issue from '../models/issue';
 import Project from '../models/project';
 
 let router = express.Router();
 
 // GET single project
-router.get('/:id', (req, res) => {
-  let projectId = new mongodb.ObjectID(req.params['id']);
-  database.db.collection('projects').findOne(projectId).then((project)=> {
-    console.log(project);
-    res.json(project);
-  });
-});
+// router.get('/:id', (req, res) => {
+//   let projectId = new mongodb.ObjectID(req.params['id']);
+//   database.db.collection('projects').findOne(projectId).then((project)=> {
+//     res.json(project);
+//   });
+// });
 
 // GET projects
 router.get('/', (req, res) => {
-  database.db.collection('projects').find().toArray().then((projects)=>{
-    console.log("From Router: " + projects);
-    res.json(projects);
+  Project.find({}, function(err, result){
+    res.send(result);
   })
 });
 
 // Create/Update project
 router.post('/', (req, res) => {
-  let project = req.body;
-  project._id = new mongodb.ObjectID(project.id); // convert _id to object
-  database.db.collection('projects').save(project).then((newproject) => {
-    res.json(newproject);
-  })
-});
+  let project:any = new Project();
+  project.name = req.body.name;
+  project.description = req.body.description;
+  project.group_id = 1;
 
-router.delete('/:id', (req, res) => {
-  let projectId = new mongodb.ObjectID(req.params['id']);
-  database.db.collection('projects').remove({_id:projectId}).then(()=> {
-    res.sendStatus(200);
+  project.save((err, newProject) => {
+    res.send(newProject);
+    // if (err) {
+    //   res.send(err);
+    // } else {
+    //   Project.findByIdAndUpdate(req.body.project_id, { "$push": { "issues": newIssue._id }}, { "new": true, "upsert": true},
+    //     function (err, updatedProject) {
+    //       if (err) {
+    //         res.send(err)
+    //       } else {
+    //         res.send(updatedProject);
+    //       }
+    //     });
+    //   }
   });
 });
+
+// router.delete('/:id', (req, res) => {
+//   let projectId = new mongodb.ObjectID(req.params['id']);
+//   database.db.collection('projects').remove({_id:projectId}).then(()=> {
+//     res.sendStatus(200);
+//   });
+// });
 
 export default router;

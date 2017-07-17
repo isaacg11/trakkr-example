@@ -19,7 +19,7 @@ namespace trakkr.Services {
     }
 
     constructor($resource:ng.resource.IResourceService) {
-      this.ProjectResource = $resource('/api/project/:id');
+      this.ProjectResource = $resource('/api/projects/:id');
     }
   }
 
@@ -83,7 +83,7 @@ namespace trakkr.Services {
     }
 
     constructor($resource:ng.resource.IResourceService) {
-      this.IssueResource = $resource('/api/issue/:id');
+      this.IssueResource = $resource('/api/issues/:id');
     }
   }
 

@@ -34,7 +34,7 @@ namespace trakkr.Controllers {
 
       public saveProject() {
         this.ProjectService.save(this.project).then(() => {
-          this.projects = this.ProjectService.list();
+          // this.projects = this.ProjectService.list();
         });
       }
 
@@ -54,9 +54,10 @@ namespace trakkr.Controllers {
     export class SingleProjectController {
       private project;
       private newIssue:any;
+      public id
 
       public addIssue(issue) {
-        issue.project_id = this.project._id;
+        issue.project_id = this.id;
         this.IssueService.save(issue).then((project) => {
           this.project = project;
         });
@@ -67,8 +68,8 @@ namespace trakkr.Controllers {
         private ProjectService:trakkr.Services.ProjectService,
         private IssueService:trakkr.Services.IssueService
       ) {
-        let id = $stateParams['id'];
-        this.project = ProjectService.get(id);
+        this.id = $stateParams['id'];
+        // this.project = ProjectService.get(id);
       }
     }
 

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose = require("mongoose");
 var jwt = require("jsonwebtoken");
 var Schema = mongoose.Schema;
@@ -33,5 +34,4 @@ userSchema.method('generateJWT', function () {
     }, 'Realize.Create.Evolve');
 });
 var User = mongoose.model('User', userSchema);
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = User;
